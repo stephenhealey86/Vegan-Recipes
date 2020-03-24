@@ -36,7 +36,7 @@ a.vegan:hover {
     text-decoration: none;
 }
 
-html, body {
+html, body, app-root {
     height: 100%;
 }
 
@@ -50,6 +50,15 @@ a:hover {
 app-landing {
     display: flex;
     align-items: stretch;
+    flex-grow: 1;
+}
+
+app-recipe-card {
+    display: flex;
+    justify-items: stretch;
+}
+
+app-recipes {
     flex-grow: 1;
 }
 
