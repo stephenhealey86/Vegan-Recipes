@@ -1,8 +1,55 @@
+:root {
+    --vegan-background: #FEFEFE;
+    --vegan-foreground: #BABABA;
+    --vegan-brand: rgb(6, 160, 6);
+}
+
+* {
+    font-family: 'Bitter', serif;
+}
+
+.vegan {
+    color: var(--vegan-foreground);
+}
+
+nav.vegan {
+    background: var(--vegan-background);
+    color: var(--veagn-foreground);
+}
+
+a.vegan {
+    color: var(--vegan-foreground);
+}
+
+a.vegan:hover {
+    text-decoration: none;
+}
+
+.vegan-brand {
+    color: var(--vegan-brand);
+    font-family: 'Bitter', serif;
+    font-size: 5vh;
+}
+
+.vegan-brand:hover {
+    color: var(--vegan-brand);
+    text-decoration: none;
+}
+
 html, body {
     height: 100%;
 }
 
+a {
+    color: var(--vegan-brand);
+}
+a:hover {
+    color: var(--vegan-brand);
+}
+
 app-landing {
+    display: flex;
+    align-items: stretch;
     flex-grow: 1;
 }
 
@@ -18,5 +65,8 @@ app-landing {
     }
     p {
         font-size: 4vw !important;
+    }
+    .vegan-brand {
+        font-size: 3vh;
     }
 }

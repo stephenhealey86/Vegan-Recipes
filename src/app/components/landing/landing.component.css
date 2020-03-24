@@ -1,0 +1,52 @@
+#background-svg{
+    z-index: -1;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: url('../../../assets/Images/landing_background.svg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#background-image{
+    z-index: -1;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: right;
+    margin: 0;
+}
+
+#banner {
+    height: 70%;
+}
+
+img {
+    object-fit: cover;
+    object-position: center;
+    margin: 0.2rem;
+}
+
+@media screen and (max-width: 550px) {
+    img {
+        width: 20vw;
+        height: 20vw;
+    }
+}
+
+@media screen and (min-width: 550px) and (max-width: 800px) {
+    img {
+        width: 15vw;
+        height: 15vw;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    img {
+        width: 10vw;
+        height: 10vw;
+    }
+}
