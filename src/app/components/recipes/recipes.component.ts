@@ -15,7 +15,7 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit() {
     this.recipeService.getVeganRecipes()
-      .subscribe(res => {
+      .subscribe((res: SpoonacularRecipeSearch) => {
         this.veganRecipes = res;
       }, err => {
         console.log(err);

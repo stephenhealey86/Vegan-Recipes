@@ -1,3 +1,3 @@
-<div *ngIf="veganRecipes.results" class="d-flex flex-wrap justify-content-center">
+<div *ngIf="veganRecipes && veganRecipes.results.length> 0" class="d-flex flex-wrap justify-content-center">
   <app-recipe-card *ngFor="let recipe of veganRecipes.results" [recipeData]="recipe" [baseUri]="veganRecipes.baseUri"></app-recipe-card>
 </div>

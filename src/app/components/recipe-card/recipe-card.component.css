@@ -19,7 +19,21 @@ img {
     }
 }
 
-@media screen and (min-width: 550px) and (max-width: 800px) {
+@media screen and (min-width: 550px) and (max-width: 1000px) {
+    article {
+        width: 25vw;
+    }
+    img {
+        height: 25vw;
+        object-fit: cover;
+        object-position: center;
+    }
+    p {
+        font-size: 1.5vw !important;
+    }
+}
+
+@media screen and (min-width: 1000px) {
     article {
         width: 15vw;
     }
@@ -29,20 +43,6 @@ img {
         object-position: center;
     }
     p {
-        font-size: 1.5vh !important;
-    }
-}
-
-@media screen and (min-width: 800px) {
-    article {
-        width: 20vw;
-    }
-    img {
-        height: 20vw;
-        object-fit: cover;
-        object-position: center;
-    }
-    p {
-        font-size: 2vh !important;
+        font-size: 0.8vw !important;
     }
 }

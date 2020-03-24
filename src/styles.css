@@ -47,7 +47,7 @@ a:hover {
     color: var(--vegan-brand);
 }
 
-app-landing {
+app-landing, app-instructions {
     display: flex;
     align-items: stretch;
     flex-grow: 1;
@@ -59,6 +59,12 @@ app-recipe-card {
 }
 
 app-recipes {
+    overflow: auto;
+    background: url('./assets/Images/landing_image.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     flex-grow: 1;
 }
 
