@@ -10,6 +10,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipesService } from './services/recipes.service';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
+import { InstructionsComponent } from './components/instructions/instructions.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RecipeCardComponent } from './components/recipe-card/recipe-card.compon
     FooterComponent,
     LandingComponent,
     RecipesComponent,
-    RecipeCardComponent
+    RecipeCardComponent,
+    InstructionsComponent
   ],
   imports: [
     BrowserModule,
