@@ -11,6 +11,7 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipesService } from './services/recipes.service';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { InstructionsComponent } from './components/instructions/instructions.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { InstructionsComponent } from './components/instructions/instructions.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    TooltipModule.forRoot()
   ],
   providers: [
     RecipesService

@@ -1,15 +1,39 @@
 <div *ngIf="recipeInstructions" class="d-flex flex-column flex-grow-1">
-  <div id="instrucitons-icons">
-    <img *ngIf="recipeInstructions.vegan" class="food_icon" src="../../../assets/Images/icons/icon_vegan.png" alt="vegan icon">
-    <img *ngIf="recipeInstructions.glutenFree" class="food_icon" src="../../../assets/Images/icons/icon_gf.svg" alt="vegan icon">
-    <a routerLink="/recipes"><i class="fas fa-reply food_icon"></i></a>
+  <!-- Icons -->
+  <div id="instrucitons-icons" class="d-flex flex-row justify-content-between align-items-center">
+    <div style="display: inherit;">
+      <img tooltip="Vegan" [delay]="500" *ngIf="recipeInstructions.vegan" class="food_icon" src="../../../assets/Images/icons/icon_vegan.png" alt="vegan icon">
+      <img tooltip="Gluten Free" [delay]="500" *ngIf="recipeInstructions.glutenFree" class="food_icon" src="../../../assets/Images/icons/icon_gf.svg" alt="vegan icon">
+      <p tooltip="Health Score %" [delay]="500" *ngIf="recipeInstructions.healthScore" class="food_icon">{{recipeInstructions.healthScore}}</p>
+      <div class="vertical-line my-2"></div>
+      <span tooltip="Prep Time" [delay]="500" *ngIf="recipeInstructions.preparationMinutes" class="food_icon">
+        <p>{{recipeInstructions.preparationMinutes}}</p>
+        <i class="far fa-clock"></i>
+      </span>
+      <span tooltip="Cook Time" [delay]="500" *ngIf="recipeInstructions.cookingMinutes" class="food_icon">
+        <p>{{recipeInstructions.cookingMinutes}}</p>
+        <i class="far fa-clock"></i>
+      </span>
+      <div class="vertical-line my-2"></div>
+    </div>
+    <div style="display: inherit;">
+      <div class="vertical-line my-2"></div>
+      <a tooltip="Recipes" [delay]="500" routerLink="/recipes"><i class="fas fa-reply food_icon"></i></a>
+    </div>
   </div>
-  <div id="instrucitons-main" class="d-flex flex-row justify-content-center flex-grow-1 flex-wrap">
+  <!-- Main -->
+  <div id="instrucitons-main" class="d-flex flex-row justify-content-center align-items-start flex-grow-1 flex-wrap">
+    <!-- Summary -->
     <div class="m-5 p-3 bg-light rounded" id="summary">
       <h3>{{recipeInstructions.title}}</h3>
       <img src="{{recipeInstructions.image}}" alt="{{recipeInstructions.title}}">
+      <div class="d-flex">
+        <h6 *ngIf="recipeInstructions.preparationMinutes">Prep Time: {{recipeInstructions.preparationMinutes}} mins</h6>
+        <h6 *ngIf="recipeInstructions.cookingMinutes">Cooking Time: {{recipeInstructions.cookingMinutes}}m</h6>
+      </div>
       <p class="m-2" [innerHTML]="recipeInstructions.summary"></p>
     </div>
+    <!-- Ingredients -->
     <div class="m-5 p-3 bg-light rounded" id="ingredients">
       <h3>Ingredients</h3>
       <ul class="list-group list-group-flush">

@@ -1,20 +1,55 @@
 img.food_icon {
-    height: 7vh;
-    width: 7vh;
+    height: 4vh;
+    width: 4vh;
     margin: 1rem;
 }
 
 i.food_icon {
-    float: right;
-    font-size: 7vh;
+    font-size: 4vh;
     color: var(--vegan-brand);
     margin: 1rem;
-    vertical-align: middle;
 }
 
-i.food_icon:hover {
+a:hover > i.food_icon {
     cursor: pointer;
     animation: Vibrate 250ms 2;
+}
+
+span.food_icon {
+    height: 4vh;
+    background-color: var(--vegan-brand);
+    color: white;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 3vh;
+    padding: 1rem;
+    border-radius: 40% / 100%;
+}
+
+span.food_icon > p {
+    margin: 0 0.5rem 0 0;
+}
+
+.food_icon:hover {
+    cursor: default;
+}
+
+p.food_icon {
+    display: inline-block;
+    background: var(--vegan-brand);
+    height: 4vh;
+    width: 4vh;
+    line-height: 4vh;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    margin: 1rem;
+}
+
+.vertical-line {
+    border-left: 1px solid var(--vegan-brand);
 }
 
 #instrucitons-icons {
@@ -27,6 +62,7 @@ i.food_icon:hover {
 
 img {
     width: 100%;
+    margin-bottom: 1rem;
     height: auto;
 }
 

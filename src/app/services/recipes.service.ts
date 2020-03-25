@@ -23,7 +23,8 @@ public getVeganRecipes(): Observable<SpoonacularRecipeSearch> {
 }
 
 public getRecipeInstructions(id: string): Observable<SpoonacularInformationResult> {
-  return this.http.get<SpoonacularInformationResult>(this.baseUrl + this.instructionsUrl + id + '/information?' + this.token);
+  // return this.http.get<SpoonacularInformationResult>(this.baseUrl + this.instructionsUrl + id + '/information?' + this.token);
+  return this.http.get<SpoonacularInformationResult>('http://192.168.1.12/api');
 }
 
 }
