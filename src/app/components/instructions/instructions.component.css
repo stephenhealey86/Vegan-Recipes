@@ -65,6 +65,13 @@ p.food_icon {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
+@supports (-webkit-touch-callout: none) {
+    /* CSS specific to iOS devices */ 
+    #instrucitons-icons {
+        height: 20vh;
+    }
+ }
+
 #instrucitons-main {
     overflow-y: auto;
 }
