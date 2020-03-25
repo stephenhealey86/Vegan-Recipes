@@ -1,3 +1,9 @@
+article:hover {
+    position: relative;
+    top: -2px;
+    left: -2px;
+}
+
 img {
     object-fit: cover;
     object-position: center;

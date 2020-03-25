@@ -32,7 +32,6 @@ a.vegan:hover {
 }
 
 .vegan-brand:hover {
-    color: var(--vegan-brand);
     text-decoration: none;
 }
 
@@ -40,17 +39,35 @@ html, body, app-root {
     height: 100%;
 }
 
-a {
+a, h1, h2, h3, h4, h5, h6 {
     color: var(--vegan-brand);
 }
 a:hover {
     color: var(--vegan-brand);
+    text-decoration: none;
 }
 
-app-landing, app-instructions {
+
+.btn:hover {
+    animation: Vibrate 250ms 2;
+}
+
+app-landing{
     display: flex;
     align-items: stretch;
     flex-grow: 1;
+}
+
+app-instructions {
+    display: flex;
+    align-items: stretch;
+    flex-grow: 1;
+    overflow: auto;
+    background: url('./assets/Images/instructions_background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 app-recipe-card {
@@ -68,6 +85,29 @@ app-recipes {
     flex-grow: 1;
 }
 
+/* Animations */
+@keyframes Vibrate {
+    25%, 75% {
+        transform: rotate(2.5deg);
+    }
+    50%, 100% {
+        transform: rotate(-2.5deg);
+    }
+}
+
+@keyframes Spinner {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Responsiveness */
 @media screen and (max-width: 600px) {
     h1 {
         font-size: 6vw !important;
@@ -79,7 +119,7 @@ app-recipes {
         font-size: 4vw !important;
     }
     p {
-        font-size: 4vw !important;
+        font-size: 3vw !important;
     }
     .vegan-brand {
         font-size: 3vh;

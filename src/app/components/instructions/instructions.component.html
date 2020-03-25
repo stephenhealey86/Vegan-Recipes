@@ -1,3 +1,20 @@
-<p>
-  instructions works!
-</p>
+<div *ngIf="recipeInstructions" class="d-flex flex-column flex-grow-1">
+  <div id="instrucitons-icons">
+    <img *ngIf="recipeInstructions.vegan" class="food_icon" src="../../../assets/Images/icons/icon_vegan.png" alt="vegan icon">
+    <img *ngIf="recipeInstructions.glutenFree" class="food_icon" src="../../../assets/Images/icons/icon_gf.svg" alt="vegan icon">
+    <a routerLink="/recipes"><i class="fas fa-reply food_icon"></i></a>
+  </div>
+  <div id="instrucitons-main" class="d-flex flex-row justify-content-center flex-grow-1 flex-wrap">
+    <div class="m-5 p-3 bg-light rounded" id="summary">
+      <h3>{{recipeInstructions.title}}</h3>
+      <img src="{{recipeInstructions.image}}" alt="{{recipeInstructions.title}}">
+      <p class="m-2" [innerHTML]="recipeInstructions.summary"></p>
+    </div>
+    <div class="m-5 p-3 bg-light rounded" id="ingredients">
+      <h3>Ingredients</h3>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let item of recipeInstructions.extendedIngredients" class="list-group-item">{{item.originalName}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
