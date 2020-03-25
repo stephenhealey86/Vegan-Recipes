@@ -12,6 +12,7 @@ import { RecipesService } from './services/recipes.service';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { InstructionsComponent } from './components/instructions/instructions.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { IngredientComponent } from './components/ingredient/ingredient.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     LandingComponent,
     RecipesComponent,
     RecipeCardComponent,
-    InstructionsComponent
+    InstructionsComponent,
+    IngredientComponent
   ],
   imports: [
     BrowserModule,

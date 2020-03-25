@@ -62,7 +62,7 @@ app-instructions {
     display: flex;
     align-items: stretch;
     flex-grow: 1;
-    overflow: auto;
+    overflow-y: auto;
     background: url('./assets/Images/instructions_background.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;

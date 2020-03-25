@@ -1,13 +1,20 @@
+* {
+    --my-margin: 1vw;
+    --my-sizeOuter: 4vw;
+    --my-sizeInner: 3vw;
+    --my-sizeSmallest: 2vw;
+}
+
 img.food_icon {
-    height: 4vh;
-    width: 4vh;
-    margin: 1rem;
+    height: var(--my-sizeOuter);
+    width: var(--my-sizeOuter);
+    margin: var(--my-margin);
 }
 
 i.food_icon {
-    font-size: 4vh;
+    font-size: var(--my-sizeOuter);
     color: var(--vegan-brand);
-    margin: 1rem;
+    margin: var(--my-margin);
 }
 
 a:hover > i.food_icon {
@@ -16,19 +23,20 @@ a:hover > i.food_icon {
 }
 
 span.food_icon {
-    height: 4vh;
+    height: var(--my-sizeOuter);
     background-color: var(--vegan-brand);
     color: white;
-    margin: 1rem;
+    margin: var(--my-margin);
     display: flex;
     align-items: center;
-    font-size: 3vh;
-    padding: 1rem;
-    border-radius: 40% / 100%;
+    font-size: var(--my-sizeInner);
+    padding: var(--my-margin);
+    border-radius: 50% / 100%;
 }
 
 span.food_icon > p {
-    margin: 0 0.5rem 0 0;
+    margin: 0 0.5vw 0 0;
+    font-size: var(--my-sizeInner) !important;
 }
 
 .food_icon:hover {
@@ -38,14 +46,15 @@ span.food_icon > p {
 p.food_icon {
     display: inline-block;
     background: var(--vegan-brand);
-    height: 4vh;
-    width: 4vh;
-    line-height: 4vh;
+    height: var(--my-sizeOuter);
+    width: var(--my-sizeOuter);
+    line-height: var(--my-sizeOuter);
     color: white;
     border-radius: 50%;
     text-align: center;
     vertical-align: middle;
-    margin: 1rem;
+    margin: var(--my-margin);
+    font-size: var(--my-sizeSmallest) !important;
 }
 
 .vertical-line {
@@ -57,7 +66,7 @@ p.food_icon {
 }
 
 #instrucitons-main {
-    overflow: auto;
+    overflow-y: auto;
 }
 
 img {
@@ -66,10 +75,32 @@ img {
     height: auto;
 }
 
+h6 {
+    font-size: 1rem !important;
+}
+
 
 /* Responsiveness */
+@media screen and (max-width: 600px) {
+    * {
+        --my-margin: 2vw;
+    }
+}
+
 @media screen and (min-width: 800px) {
     #summary, #ingredients {
         max-width: 40vw;
+    }
+    * {
+        --my-margin: 1vw;
+        --my-sizeOuter: 2.5vw;
+        --my-sizeInner: 1.25vw;
+        --my-sizeSmallest: 1vw;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    h6 {
+        font-size: 0.75rem !important;
     }
 }
