@@ -83,7 +83,16 @@ img {
 }
 
 h6 {
-    font-size: 1rem !important;
+    font-size: 0.5rem !important;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0.5rem;
 }
 
 
@@ -91,6 +100,9 @@ h6 {
 @media screen and (max-width: 600px) {
     * {
         --my-margin: 2vw;
+    }
+    .m-5 {
+        margin: 1rem !important;
     }
 }
 
@@ -103,11 +115,5 @@ h6 {
         --my-sizeOuter: 2.5vw;
         --my-sizeInner: 1.25vw;
         --my-sizeSmallest: 1vw;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    h6 {
-        font-size: 0.75rem !important;
     }
 }
