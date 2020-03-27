@@ -17,7 +17,14 @@ export class RecipesService {
   private instructionsUrl = 'recipes/';
   private token = environment.token;
   private appStorageKey = 'VeganRecipes';
-  public validRecipeIDs = [] as Array<string>;
+  private appsessionStorageKey = 'VeganRecipes';
+  public get validRecipeIDs(): Array<string> {
+    const json = sessionStorage.getItem(this.appsessionStorageKey);
+    if (json) {
+      return JSON.parse(json);
+    }
+    return [];
+  }
   public get LocalStorage(): object {
     const json = localStorage.getItem(this.appStorageKey);
     if (json) {
@@ -37,10 +44,12 @@ public getVeganRecipes(): Observable<SpoonacularRecipeSearch> {
 }
 
 private addRecipeIDsToService(res: SpoonacularRecipeSearch): void {
-  this.validRecipeIDs = [] as Array<string>;
+  const SESSION_STORAGE = this.validRecipeIDs;
   res.results.forEach(x => {
-    this.validRecipeIDs.push(x.id.toString());
+    SESSION_STORAGE.push(x.id.toString());
   });
+  const json = JSON.stringify(SESSION_STORAGE);
+  sessionStorage.setItem(this.appsessionStorageKey, json);
 }
 
 public getRecipeInstructions(id: string): Observable<SpoonacularInformationResult> {
