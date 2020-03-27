@@ -16,6 +16,7 @@ export class RecipesService {
   private instructionsUrl = 'recipes/';
   private token = environment.token;
   private appStorageKey = 'VeganRecipes';
+  public validRecipeIDs = [] as Array<string>;
   public get LocalStorage(): object {
     const json = localStorage.getItem(this.appStorageKey);
     if (json) {

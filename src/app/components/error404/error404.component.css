@@ -10,10 +10,6 @@
     background-size: cover;
 }
 
-h3 {
-    color: var(--vegan-background);
-}
-
 #background-image{
     z-index: -1;
     position: fixed;
@@ -22,6 +18,10 @@ h3 {
     object-fit: cover;
     object-position: right;
     margin: 0;
+}
+
+h3 {
+    color: var(--vegan-background);
 }
 
 #banner {

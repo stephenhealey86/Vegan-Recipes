@@ -52,7 +52,7 @@ a:hover {
     animation: Vibrate 250ms 2;
 }
 
-app-landing{
+app-landing, app-error404 {
     display: flex;
     align-items: stretch;
     flex-grow: 1;
