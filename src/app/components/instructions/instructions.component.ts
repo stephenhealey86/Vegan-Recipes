@@ -19,12 +19,18 @@ export class InstructionsComponent implements OnInit {
   }
 
   private getRecipeInstructions(id: string): void {
-    this.recipeService.getRecipeInstructions(id)
+    const storedResult = this.recipeService.getRecipeInstructionsFromLocalStorage(id);
+    if (storedResult) {
+      this.recipeInstructions = storedResult;
+    } else {
+      this.recipeService.getRecipeInstructions(id)
       .subscribe(res => {
+        this.recipeService.setRecipeInstructionsFromLocalStorage(res);
         this.recipeInstructions = res;
       }, err => {
         console.log(err);
       });
+    }
   }
 
   private getRecipeId(): string {
