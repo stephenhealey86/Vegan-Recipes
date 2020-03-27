@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { SpoonacularRecipeSearch } from '../models/spoonacular-recipe-search';
 import { SpoonacularInformationResult } from '../models/spoonacular-information-result';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -28,7 +29,18 @@ export class RecipesService {
 constructor(private http: HttpClient) { }
 
 public getVeganRecipes(): Observable<SpoonacularRecipeSearch> {
-  return this.http.get<SpoonacularRecipeSearch>(this.baseUrl + this.dietUrl + 'vegan&' + this.token);
+  return this.http.get<SpoonacularRecipeSearch>(this.baseUrl + this.dietUrl + 'vegan&' + this.token)
+          .pipe<SpoonacularRecipeSearch>(map(res => {
+            this.addRecipeIDsToService(res);
+            return res;
+          }));
+}
+
+private addRecipeIDsToService(res: SpoonacularRecipeSearch): void {
+  this.validRecipeIDs = [] as Array<string>;
+  res.results.forEach(x => {
+    this.validRecipeIDs.push(x.id.toString());
+  });
 }
 
 public getRecipeInstructions(id: string): Observable<SpoonacularInformationResult> {

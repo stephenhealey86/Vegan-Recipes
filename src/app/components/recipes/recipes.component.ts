@@ -17,17 +17,8 @@ export class RecipesComponent implements OnInit {
     this.recipeService.getVeganRecipes()
       .subscribe((res: SpoonacularRecipeSearch) => {
         this.veganRecipes = res;
-        this.addRecipeIDsToService(res);
       }, err => {
         console.log(err);
       });
   }
-
-  private addRecipeIDsToService(res: SpoonacularRecipeSearch): void {
-    this.recipeService.validRecipeIDs = [] as Array<string>;
-    res.results.forEach(x => {
-      this.recipeService.validRecipeIDs.push(x.id.toString());
-    });
-  }
-
 }
