@@ -15,6 +15,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { IngredientComponent } from './components/ingredient/ingredient.component';
 import { InstructionsGuardService } from './guards/instructions-guard.service';
 import { Error404Component } from './components/error404/error404.component';
+import { JQ_TOKEN } from './services/jquery-token.service';
+
+const JQuery: object = window['$'];
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { Error404Component } from './components/error404/error404.component';
   ],
   providers: [
     RecipesService,
-    InstructionsGuardService
+    InstructionsGuardService,
+    { provide: JQ_TOKEN, useValue: JQuery }
   ],
   bootstrap: [AppComponent]
 })
