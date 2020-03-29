@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { SpoonacularRecipeSearch } from 'src/app/models/spoonacular-recipe-search';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipes',
@@ -9,16 +10,11 @@ import { SpoonacularRecipeSearch } from 'src/app/models/spoonacular-recipe-searc
 })
 export class RecipesComponent implements OnInit {
 
-  veganRecipes: SpoonacularRecipeSearch;
+  veganRecipes$: Observable<SpoonacularRecipeSearch>;
 
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit() {
-    this.recipeService.getVeganRecipes()
-      .subscribe((res: SpoonacularRecipeSearch) => {
-        this.veganRecipes = res;
-      }, err => {
-        console.log(err);
-      });
+    this.veganRecipes$ = this.recipeService.getVeganRecipes();
   }
 }

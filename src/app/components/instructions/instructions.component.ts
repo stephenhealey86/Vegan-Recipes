@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { ActivatedRoute } from '@angular/router';
 import { SpoonacularInformationResult } from 'src/app/models/spoonacular-information-result';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-instructions',
@@ -10,7 +11,7 @@ import { SpoonacularInformationResult } from 'src/app/models/spoonacular-informa
 })
 export class InstructionsComponent implements OnInit {
 
-  recipeInstructions: SpoonacularInformationResult;
+  recipeInstructions$: Observable<SpoonacularInformationResult>;
 
   constructor(private recipeService: RecipesService, private route: ActivatedRoute) { }
 
@@ -21,15 +22,9 @@ export class InstructionsComponent implements OnInit {
   private getRecipeInstructions(id: string): void {
     const storedResult = this.recipeService.getRecipeInstructionsFromLocalStorage(id);
     if (storedResult) {
-      this.recipeInstructions = storedResult;
+      this.recipeInstructions$ = of(storedResult);
     } else {
-      this.recipeService.getRecipeInstructions(id)
-      .subscribe(res => {
-        this.recipeService.setRecipeInstructionsFromLocalStorage(res);
-        this.recipeInstructions = res;
-      }, err => {
-        console.log(err);
-      });
+      this.recipeInstructions$ = this.recipeService.getRecipeInstructions(id);
     }
   }
 

@@ -1,4 +1,4 @@
-<div *ngIf="recipeInstructions" class="d-flex flex-column flex-grow-1">
+<div *ngIf="recipeInstructions$ | async as recipeInstructions" class="d-flex flex-column flex-grow-1">
 
   <!-- Icons -->
   <div id="instrucitons-icons" class="d-flex flex-row justify-content-between align-items-center">

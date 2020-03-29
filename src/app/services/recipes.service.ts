@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { SpoonacularRecipeSearch } from '../models/spoonacular-recipe-search';
 import { SpoonacularInformationResult } from '../models/spoonacular-information-result';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -37,10 +37,13 @@ constructor(private http: HttpClient) { }
 
 public getVeganRecipes(): Observable<SpoonacularRecipeSearch> {
   return this.http.get<SpoonacularRecipeSearch>(this.baseUrl + this.dietUrl + 'vegan&' + this.token)
-          .pipe<SpoonacularRecipeSearch>(tap(res => {
+          .pipe(
+            tap((res: SpoonacularRecipeSearch) => {
             this.addRecipeIDsToService(res);
             return res;
-          }));
+          }),
+          catchError(this.handleError)
+          );
 }
 
 private addRecipeIDsToService(res: SpoonacularRecipeSearch): void {
@@ -53,7 +56,13 @@ private addRecipeIDsToService(res: SpoonacularRecipeSearch): void {
 }
 
 public getRecipeInstructions(id: string): Observable<SpoonacularInformationResult> {
-    return this.http.get<SpoonacularInformationResult>(this.baseUrl + this.instructionsUrl + id + '/information?' + this.token);
+    return this.http.get<SpoonacularInformationResult>(this.baseUrl + this.instructionsUrl + id + '/information?' + this.token)
+      .pipe(
+        tap(res => {
+          this.setRecipeInstructionsFromLocalStorage(res);
+        }),
+        catchError(this.handleError)
+      );
   }
 
 public getRecipeInstructionsFromLocalStorage(id: string): SpoonacularInformationResult {
@@ -64,7 +73,7 @@ public getRecipeInstructionsFromLocalStorage(id: string): SpoonacularInformation
   return null;
 }
 
-public setRecipeInstructionsFromLocalStorage(res: SpoonacularInformationResult): void {
+private setRecipeInstructionsFromLocalStorage(res: SpoonacularInformationResult): void {
   let storageToUpdate = this.LocalStorage;
   if (!storageToUpdate) {
     storageToUpdate = {};
@@ -72,6 +81,11 @@ public setRecipeInstructionsFromLocalStorage(res: SpoonacularInformationResult):
   storageToUpdate[res.id.toString()] = res;
   const json = JSON.stringify(storageToUpdate);
   localStorage.setItem(this.appStorageKey, json);
+}
+
+private handleError(err: any): Observable<never> {
+  console.log(err);
+  return EMPTY;
 }
 
 }
