@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, EMPTY } from 'rxjs';
+import { Observable, EMPTY, of } from 'rxjs';
 import { SpoonacularRecipeSearch } from '../models/spoonacular-recipe-search';
 import { SpoonacularInformationResult } from '../models/spoonacular-information-result';
 import { tap, catchError, shareReplay } from 'rxjs/operators';
@@ -62,14 +62,19 @@ private addRecipeIDsToService(res: SpoonacularRecipeSearch): void {
 }
 
 public getRecipeInstructions(id: string): Observable<SpoonacularInformationResult> {
+  const storedResult = this.getRecipeInstructionsFromLocalStorage(id);
+  if (storedResult) {
+    return of(storedResult);
+  } else {
     return this.http.get<SpoonacularInformationResult>(this.baseUrl + this.instructionsUrl + id + '/information?' + this.token)
-      .pipe(
-        tap(res => {
-          this.setRecipeInstructionsFromLocalStorage(res);
-        }),
-        catchError(this.handleError)
-      );
+    .pipe(
+      tap(res => {
+        this.setRecipeInstructionsFromLocalStorage(res);
+      }),
+      catchError(this.handleError)
+    );
   }
+}
 
 public getRecipeInstructionsFromLocalStorage(id: string): SpoonacularInformationResult {
   const LOCAL_STORAGE = this.LocalStorage;
