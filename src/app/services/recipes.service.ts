@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, EMPTY } from 'rxjs';
 import { SpoonacularRecipeSearch } from '../models/spoonacular-recipe-search';
 import { SpoonacularInformationResult } from '../models/spoonacular-information-result';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, shareReplay } from 'rxjs/operators';
 
 
 @Injectable({
@@ -18,6 +18,7 @@ export class RecipesService {
   private token = environment.token;
   private appStorageKey = 'VeganRecipes';
   private appsessionStorageKey = 'VeganRecipes';
+  private recipeSearch$: Observable<SpoonacularRecipeSearch>;
   public get validRecipeIDs(): Array<string> {
     const json = sessionStorage.getItem(this.appsessionStorageKey);
     if (json) {
@@ -36,14 +37,19 @@ export class RecipesService {
 constructor(private http: HttpClient) { }
 
 public getVeganRecipes(): Observable<SpoonacularRecipeSearch> {
-  return this.http.get<SpoonacularRecipeSearch>(this.baseUrl + this.dietUrl + 'vegan&' + this.token)
-          .pipe(
-            tap((res: SpoonacularRecipeSearch) => {
-            this.addRecipeIDsToService(res);
-            return res;
-          }),
-          catchError(this.handleError)
-          );
+  if (!this.recipeSearch$) {
+    this.recipeSearch$ = this.http.get<SpoonacularRecipeSearch>(this.baseUrl + this.dietUrl + 'vegan&' + 'number=100&' + this.token)
+    .pipe(
+      tap((res: SpoonacularRecipeSearch) => {
+      this.addRecipeIDsToService(res);
+      console.log(res);
+      return res;
+    }),
+    shareReplay(1),
+    catchError(this.handleError)
+    );
+  }
+  return this.recipeSearch$;
 }
 
 private addRecipeIDsToService(res: SpoonacularRecipeSearch): void {
