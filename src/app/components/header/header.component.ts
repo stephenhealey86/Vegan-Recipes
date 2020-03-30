@@ -9,7 +9,7 @@ import { Router, RouterEvent } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  queryField: string;
+  queryField = '';
 
   constructor(private recipeService: RecipesService, private router: Router) { }
 
