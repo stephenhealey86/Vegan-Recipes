@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, EMPTY, of, BehaviorSubject, combineLatest, } from 'rxjs';
+import { Observable, EMPTY, of, BehaviorSubject, combineLatest, from, } from 'rxjs';
 import { SpoonacularRecipeSearch } from '../models/spoonacular-recipe-search';
 import { SpoonacularInformationResult } from '../models/spoonacular-information-result';
-import { tap, catchError, shareReplay, map } from 'rxjs/operators';
+import { tap, catchError, shareReplay, map, mergeMap, concatMap, toArray } from 'rxjs/operators';
 
 
 @Injectable({
@@ -19,8 +19,6 @@ export class RecipesService {
   private appStorageKey = 'VeganRecipes';
   private appsessionStorageKey = 'VeganRecipes';
 
-  private numberOfResultsPerRequest = 100;
-  private recipeSearchArray$ = [] as Array<Observable<SpoonacularRecipeSearch>>;
   private recipeSearch$: Observable<SpoonacularRecipeSearch>;
   private searchStream$ = new BehaviorSubject<string>('');
   private searchAction$ = this.searchStream$.asObservable();
@@ -42,13 +40,16 @@ export class RecipesService {
 
 constructor(private http: HttpClient) { }
 
+
 public getVeganRecipes(): Observable<SpoonacularRecipeSearch> {
   if (!this.recipeSearch$) {
     sessionStorage.clear();
-    for (let i = 0; i < 4; i++) {
-      this.recipeSearchArray$.push(this.getNextRecipesObservable(this.numberOfResultsPerRequest, i * this.numberOfResultsPerRequest));
-    }
-    this.recipeSearch$ = combineLatest<Array<SpoonacularRecipeSearch>>(...this.recipeSearchArray$)
+    this.recipeSearch$ = combineLatest<Array<SpoonacularRecipeSearch>>([
+      this.getNextRecipesObservable(100, 0),
+      this.getNextRecipesObservable(100, 100),
+      this.getNextRecipesObservable(100, 200),
+      this.getNextRecipesObservable(100, 300)
+    ])
       .pipe(
         map(([one, two, three, four]) => {
           three.results.push(...four.results);
