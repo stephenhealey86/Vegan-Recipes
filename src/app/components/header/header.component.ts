@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RecipesService } from 'src/app/services/recipes.service';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  queryField: string;
 
-  ngOnInit() {
+  constructor(private recipeService: RecipesService, private router: Router) { }
+
+  ngOnInit() { }
+
+  public submit(): void {
+    this.recipeService.filterRecipeSearch(this.queryField);
+    if (!this.router.url.includes('recipes')) {
+      this.router.navigateByUrl('/recipes');
+    }
+  }
+
+  public clearSearchBar(): void {
+    this.queryField = '';
   }
 
   public animate(event: MouseEvent): void {

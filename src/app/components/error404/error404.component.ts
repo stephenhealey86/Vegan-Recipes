@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RecipesService } from 'src/app/services/recipes.service';
 
 @Component({
   selector: 'app-error404',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Error404Component implements OnInit {
 
-  constructor() { }
+  constructor(private recipeService: RecipesService) { }
 
   ngOnInit() {
+    this.recipeService.filterRecipeSearch('');
   }
 
 }

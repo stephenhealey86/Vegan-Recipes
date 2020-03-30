@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { SpoonacularRecipeSearch } from 'src/app/models/spoonacular-recipe-search';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipes',
@@ -11,10 +12,46 @@ import { Observable } from 'rxjs';
 export class RecipesComponent implements OnInit {
 
   veganRecipes$: Observable<SpoonacularRecipeSearch>;
+  private numberOfRecipes = 100;
+  private showMoreRecipesSubject = new BehaviorSubject<number>(this.numberOfRecipes);
+  private showMoreRecipesAction$ = this.showMoreRecipesSubject.asObservable();
+  public hideShowMoreVisiblity = false;
 
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit() {
-    this.veganRecipes$ = this.recipeService.getVeganRecipes();
+    this.veganRecipes$ = combineLatest([
+      this.recipeService.getVeganRecipes(),
+      this.showMoreRecipesAction$
+    ])
+    .pipe(
+      map(([recipes, num]) => {
+        const recipesToReturn = {
+          ...recipes
+        };
+        recipesToReturn.results = recipes.results.filter((val, i) => {
+          return i < num;
+        });
+        return recipesToReturn;
+      }),
+      tap((res: SpoonacularRecipeSearch) => {
+        if (res.results.length < 100) {
+          this.hideShowMoreVisiblity = true;
+        } else {
+          this.hideShowMoreVisiblity = this.numberOfRecipes < 400 ? false : true;
+        }
+      })
+    );
+  }
+
+  getMoreRecipes(): void {
+    // this.recipeService.getMoreVeganRecipes();
+    if (this.numberOfRecipes <= 300) {
+      this.numberOfRecipes += 100;
+      this.showMoreRecipesSubject.next(this.numberOfRecipes);
+      if (this.numberOfRecipes >= 400) {
+        this.hideShowMoreVisiblity = true;
+      }
+    }
   }
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, EMPTY, of } from 'rxjs';
+import { Observable, EMPTY, of, BehaviorSubject, combineLatest, } from 'rxjs';
 import { SpoonacularRecipeSearch } from '../models/spoonacular-recipe-search';
 import { SpoonacularInformationResult } from '../models/spoonacular-information-result';
-import { tap, catchError, shareReplay } from 'rxjs/operators';
+import { tap, catchError, shareReplay, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -18,7 +18,13 @@ export class RecipesService {
   private token = environment.token;
   private appStorageKey = 'VeganRecipes';
   private appsessionStorageKey = 'VeganRecipes';
+
+  private numberOfResultsPerRequest = 100;
+  private recipeSearchArray$ = [] as Array<Observable<SpoonacularRecipeSearch>>;
   private recipeSearch$: Observable<SpoonacularRecipeSearch>;
+  private searchStream$ = new BehaviorSubject<string>('');
+  private searchAction$ = this.searchStream$.asObservable();
+
   public get validRecipeIDs(): Array<string> {
     const json = sessionStorage.getItem(this.appsessionStorageKey);
     if (json) {
@@ -38,18 +44,59 @@ constructor(private http: HttpClient) { }
 
 public getVeganRecipes(): Observable<SpoonacularRecipeSearch> {
   if (!this.recipeSearch$) {
-    this.recipeSearch$ = this.http.get<SpoonacularRecipeSearch>(this.baseUrl + this.dietUrl + 'vegan&' + 'number=100&' + this.token)
+    sessionStorage.clear();
+    for (let i = 0; i < 4; i++) {
+      this.recipeSearchArray$.push(this.getNextRecipesObservable(this.numberOfResultsPerRequest, i * this.numberOfResultsPerRequest));
+    }
+    this.recipeSearch$ = combineLatest<Array<SpoonacularRecipeSearch>>(...this.recipeSearchArray$)
+      .pipe(
+        map(([one, two, three, four]) => {
+          three.results.push(...four.results);
+          two.results.push(...three.results);
+          one.results.push(...two.results);
+          return one;
+        }),
+        shareReplay(1),
+      );
+  }
+  return this.combineFilterAndSearch();
+}
+
+private combineFilterAndSearch(): Observable<SpoonacularRecipeSearch> {
+  const combinedStream$ = combineLatest<Observable<SpoonacularRecipeSearch>, Observable<string>>([
+    this.recipeSearch$,
+    this.searchAction$
+  ])
+  .pipe(
+    map(([recipes, str]) => {
+      const recipesToReturn = {
+        ...recipes
+      };
+      if (str.length > 0) {
+        recipesToReturn.results = recipes.results.filter(res => {
+            return res.title.toLowerCase().includes(str.toLowerCase());
+          });
+      }
+      return recipesToReturn;
+    })
+  );
+  return combinedStream$;
+}
+
+private getNextRecipesObservable(num: number, offest: number): Observable<SpoonacularRecipeSearch> {
+  return this.http.get<SpoonacularRecipeSearch>(this.baseUrl + this.dietUrl + 'vegan&' + `offset=${offest}&` +
+                                                `number=${num}&` + this.token)
     .pipe(
       tap((res: SpoonacularRecipeSearch) => {
       this.addRecipeIDsToService(res);
-      console.log(res);
       return res;
     }),
-    shareReplay(1),
     catchError(this.handleError)
     );
-  }
-  return this.recipeSearch$;
+}
+
+public filterRecipeSearch(str: string): void {
+  this.searchStream$.next(str);
 }
 
 private addRecipeIDsToService(res: SpoonacularRecipeSearch): void {
