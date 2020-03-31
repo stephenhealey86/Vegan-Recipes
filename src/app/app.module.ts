@@ -17,6 +17,9 @@ import { IngredientComponent } from './components/ingredient/ingredient.componen
 import { InstructionsGuardService } from './guards/instructions-guard.service';
 import { Error404Component } from './components/error404/error404.component';
 import { JQ_TOKEN } from './services/jquery-token.service';
+import { ILogger } from './models/ILogger';
+import { Logger } from './models/Logger';
+import { DatePipe } from '@angular/common';
 
 const JQuery: object = window['$'];
 
@@ -40,6 +43,8 @@ const JQuery: object = window['$'];
     TooltipModule.forRoot()
   ],
   providers: [
+    DatePipe,
+    { provide: ILogger, useClass: Logger },
     RecipesService,
     InstructionsGuardService,
     { provide: JQ_TOKEN, useValue: JQuery }

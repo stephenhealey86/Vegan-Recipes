@@ -5,6 +5,7 @@ import { Observable, EMPTY, of, BehaviorSubject, combineLatest, from, } from 'rx
 import { SpoonacularRecipeSearch } from '../models/spoonacular-recipe-search';
 import { SpoonacularInformationResult } from '../models/spoonacular-information-result';
 import { tap, catchError, shareReplay, map, mergeMap, concatMap, toArray } from 'rxjs/operators';
+import { ILogger } from '../models/ILogger';
 
 
 @Injectable({
@@ -38,7 +39,7 @@ export class RecipesService {
     return null;
   }
 
-constructor(private http: HttpClient) { }
+constructor(private http: HttpClient, private logger: ILogger) { }
 
 
 public getVeganRecipes(): Observable<SpoonacularRecipeSearch> {
@@ -143,7 +144,7 @@ private setRecipeInstructionsFromLocalStorage(res: SpoonacularInformationResult)
 }
 
 private handleError(err: any): Observable<never> {
-  console.log(err);
+  this.logger.logError(err);
   return EMPTY;
 }
 
