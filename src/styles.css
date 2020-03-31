@@ -85,6 +85,13 @@ app-recipes {
     flex-grow: 1;
 }
 
+.fa-spinner {
+    color: var(--vegan-brand) !important;
+    margin: 2rem;
+    font-size: 5rem;
+    animation: spin 3s linear 0s infinite;
+}
+
 /* Animations */
 @keyframes Vibrate {
     25%, 75% {
@@ -104,6 +111,15 @@ app-recipes {
     }
     100% {
         transform: rotate(0deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
 

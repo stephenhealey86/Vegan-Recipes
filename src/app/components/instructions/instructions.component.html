@@ -30,34 +30,46 @@
   </div>
   
   <!-- Main -->
-  <div id="instrucitons-main" class="d-flex flex-row justify-content-around align-items-start flex-grow-1 flex-wrap">
-    <!-- Summary -->
-    <div class="m-5 p-3 bg-light rounded" id="summary">
-      <h3>{{recipeInstructions.title}}</h3>
-      <img src="{{recipeInstructions.image}}" alt="{{recipeInstructions.title}}">
-      <div class="d-flex">
-        <h6 class="mr-3" *ngIf="recipeInstructions.servings">Servings: {{recipeInstructions.servings}}</h6>
-        <h6 class="mr-3" *ngIf="recipeInstructions.preparationMinutes">Prep Time: {{recipeInstructions.preparationMinutes}} mins</h6>
-        <h6 *ngIf="recipeInstructions.cookingMinutes">Cooking Time: {{recipeInstructions.cookingMinutes}}m</h6>
+  <div id="instrucitons-main" class="d-flex flex-column">
+    <div class="container">
+      <div class="row">
+        <!-- Summary -->
+        <div class="col m-5 p-3 bg-light rounded" id="summary">
+          <h3>{{recipeInstructions.title}}</h3>
+          <img src="{{recipeInstructions.image}}" alt="{{recipeInstructions.title}}">
+          <div class="d-flex">
+            <h6 class="mr-3" *ngIf="recipeInstructions.servings">Servings: {{recipeInstructions.servings}}</h6>
+            <h6 class="mr-3" *ngIf="recipeInstructions.preparationMinutes">Prep Time: {{recipeInstructions.preparationMinutes}} mins</h6>
+            <h6 *ngIf="recipeInstructions.cookingMinutes">Cooking Time: {{recipeInstructions.cookingMinutes}}m</h6>
+          </div>
+          <p class="m-2" [innerHTML]="recipeInstructions.summary"></p>
+        </div>
+
+        <!-- Ingredients -->
+        <div class="col m-5 p-3 bg-light rounded" id="ingredients">
+          <h3>Ingredients</h3>
+          <ul class="list-group list-group-flush">
+            <app-ingredient *ngFor="let ingredient of recipeInstructions.extendedIngredients" [ingredient]="ingredient"></app-ingredient>
+          </ul>
+        </div>
       </div>
-      <p class="m-2" [innerHTML]="recipeInstructions.summary"></p>
     </div>
 
-    <!-- Ingredients -->
-    <div class="m-5 p-3 bg-light rounded" id="ingredients">
-      <h3>Ingredients</h3>
-      <ul class="list-group list-group-flush">
-        <app-ingredient *ngFor="let ingredient of recipeInstructions.extendedIngredients" [ingredient]="ingredient"></app-ingredient>
-      </ul>
-    </div>
-
-      <!-- Instructions -->
-    <div class="m-5 p-3 bg-light rounded">
-      <h3>Instructions</h3>
-      <p class="m-2" [innerHTML]="recipeInstructions.instructions"></p>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let step of recipeInstructions.analyzedInstructions[0].steps">{{step.number}}: {{step.step}}</li>
-      </ul>
+    <!-- Instructions -->
+    <div class="container">
+      <div class="m-5 p-3 bg-light rounded">
+        <h3>Instructions</h3>
+        <div *ngIf="!(recipeInstructions.instructions?.length > 0) else instructions" class="loading d-flex flex-column align-items-center justify-content-center h-100">
+          <i class="fas fa-spinner text-primary"></i>
+          <p>Instructions may not be available for this recipe.</p>
+        </div>
+        <ng-template #instructions>
+          <p class="m-2" [innerHTML]="recipeInstructions.instructions"></p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let step of recipeInstructions.analyzedInstructions[0].steps">{{step.number}}: {{step.step}}</li>
+        </ul>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
