@@ -59,16 +59,14 @@
     <div class="container">
       <div class="m-5 p-3 bg-light rounded">
         <h3>Instructions</h3>
-        <div *ngIf="!(recipeInstructions.instructions?.length > 0) else instructions" class="loading d-flex flex-column align-items-center justify-content-center h-100">
-          <i class="fas fa-spinner text-primary"></i>
-          <p>Instructions may not be available for this recipe.</p>
-        </div>
-        <ng-template #instructions>
-          <p class="m-2" [innerHTML]="recipeInstructions.instructions"></p>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let step of recipeInstructions.analyzedInstructions[0].steps">{{step.number}}: {{step.step}}</li>
-        </ul>
-        </ng-template>
+        <app-spinner #instructionsSpinner [delay]="5000" [visible]="(recipeInstructions.analyzedInstructions?.length > 0)" [message]="'Instructions may not be available for this recipe.'">
+          <ng-container *ngIf="instructionsSpinner.visible">
+            <p class="m-2" [innerHTML]="recipeInstructions.instructions"></p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngFor="let step of recipeInstructions.analyzedInstructions[0].steps">{{step.number}}: {{step.step}}</li>
+            </ul>
+          </ng-container>
+        </app-spinner>
       </div>
     </div>
   </div>

@@ -1,0 +1,5 @@
+<div *ngIf="!visible" class="loading d-flex flex-column align-items-center justify-content-center h-100">
+  <i class="fas fa-spinner text-primary"></i>
+  <p *ngIf="messageVisible">{{message}}</p>
+</div>
+<ng-content></ng-content>

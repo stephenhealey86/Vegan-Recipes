@@ -1,0 +1,19 @@
+.fa-spinner {
+    color: var(--vegan-brand) !important;
+    margin: 2rem;
+    font-size: 5rem;
+    animation: spin 3s linear 0s infinite;
+}
+
+/* Animations */
+@keyframes Spinner {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}

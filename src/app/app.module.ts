@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -20,6 +20,8 @@ import { JQ_TOKEN } from './services/jquery-token.service';
 import { ILogger } from './models/ILogger';
 import { Logger } from './models/Logger';
 import { DatePipe } from '@angular/common';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { GlobalErrorHandlerService } from './services/GlobalErrorHandler.service';
 
 const JQuery: object = window['$'];
 
@@ -33,7 +35,8 @@ const JQuery: object = window['$'];
     RecipeCardComponent,
     InstructionsComponent,
     IngredientComponent,
-    Error404Component
+    Error404Component,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,10 @@ const JQuery: object = window['$'];
     TooltipModule.forRoot()
   ],
   providers: [
+      {
+        provide: ErrorHandler,
+        useClass: GlobalErrorHandlerService
+      },
     DatePipe,
     { provide: ILogger, useClass: Logger },
     RecipesService,
