@@ -48,10 +48,10 @@ const JQuery: object = window['$'];
     TooltipModule.forRoot()
   ],
   providers: [
-      {
-        provide: ErrorHandler,
-        useClass: GlobalErrorHandlerService
-      },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerService
+    },
     DatePipe,
     { provide: ILogger, useClass: Logger },
     RecipesService,

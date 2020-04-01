@@ -4,6 +4,15 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { InstructionsComponent } from './instructions.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DatePipe } from '@angular/common';
+import { ILogger } from 'src/app/models/ILogger';
+import { Logger } from 'src/app/models/Logger';
+import { RecipesService } from 'src/app/services/recipes.service';
+import { IngredientComponent } from '../ingredient/ingredient.component';
+import { SpinnerComponent } from '../spinner/spinner.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('InstructionsComponent', () => {
   let component: InstructionsComponent;
@@ -11,7 +20,21 @@ describe('InstructionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InstructionsComponent ]
+      declarations: [
+        InstructionsComponent,
+        IngredientComponent,
+        SpinnerComponent
+       ],
+      imports: [
+        RouterTestingModule,
+        HttpClientModule,
+        TooltipModule.forRoot()
+      ],
+      providers: [
+        DatePipe,
+        { provide: ILogger, useClass: Logger },
+        RecipesService,
+      ]
     })
     .compileComponents();
   }));
@@ -20,6 +43,12 @@ describe('InstructionsComponent', () => {
     fixture = TestBed.createComponent(InstructionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    if (fixture.nativeElement && 'remove' in fixture.nativeElement) {
+      (fixture.nativeElement as HTMLElement).remove();
+    }
   });
 
   it('should create', () => {

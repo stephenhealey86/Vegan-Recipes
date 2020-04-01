@@ -4,10 +4,18 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { IngredientComponent } from './ingredient.component';
+import { ExtendedIngredient } from 'src/app/models/spoonacular-information-result';
 
 describe('IngredientComponent', () => {
   let component: IngredientComponent;
   let fixture: ComponentFixture<IngredientComponent>;
+
+  const mockIngredient = {
+    originalName: 'TestName',
+    amount: 1,
+    image: 'test.jpg'
+  } as ExtendedIngredient;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,7 +27,14 @@ describe('IngredientComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(IngredientComponent);
     component = fixture.componentInstance;
+    component.ingredient = mockIngredient;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    if (fixture.nativeElement && 'remove' in fixture.nativeElement) {
+      (fixture.nativeElement as HTMLElement).remove();
+    }
   });
 
   it('should create', () => {
