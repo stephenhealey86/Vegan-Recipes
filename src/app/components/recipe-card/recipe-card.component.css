@@ -13,15 +13,22 @@ img {
 
 @media screen and (max-width: 550px) {
     article {
-        width: 60vw;
+        width: 20vw;
     }
     img {
-        height: 60vw;
+        height: 20vw;
         object-fit: cover;
         object-position: center;
     }
     p {
-        font-size: 4vw !important;
+        font-size: 2vw !important;
+        margin: 0 !important;
+    }
+    .card-body {
+        padding: 0.25rem !important;
+    }
+    .m-3 {
+        margin: 0.5rem !important;
     }
 }
 
