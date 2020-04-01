@@ -5,6 +5,8 @@ import { Directive, ElementRef } from '@angular/core';
 })
 export class VeganBrandDirective {
 
+  direction = false;
+
   constructor(private el: ElementRef) {
     const LINK = el.nativeElement as HTMLLinkElement;
     LINK.addEventListener('mouseenter', (e) => {
@@ -17,9 +19,12 @@ export class VeganBrandDirective {
     try {
       const LINK = event.srcElement as HTMLLinkElement;
       const ICON = LINK.children[0] as HTMLElement;
-      const angle = Math.floor(Math.random() * 360 + 180);
+      let angle = Math.floor(Math.random() * 360 + 180);
       const time = Math.floor(Math.random() * 1500 + 500);
       const count = Math.floor(Math.random() * 3 + 1);
+      angle = this.direction ? angle : angle * -1;
+      this.direction = !this.direction;
+
       ICON.animate([
         // keyframes
         { transform: 'rotate(0)' },
