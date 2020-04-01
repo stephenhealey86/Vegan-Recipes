@@ -25,24 +25,4 @@ export class HeaderComponent implements OnInit {
   public clearSearchBar(): void {
     this.queryField = '';
   }
-
-  public animate(event: MouseEvent): void {
-    try {
-      const LINK = event.srcElement as HTMLLinkElement;
-      const ICON = LINK.children[0] as HTMLElement;
-      ICON.animate([
-        // keyframes
-        { transform: 'rotate(0)' },
-        { transform: 'rotate(360deg)' },
-        { transform: 'rotate(0)' }
-      ], {
-        // timing options
-        duration: 2000,
-        iterations: 1
-      });
-          } catch (error) {
-          console.log(error);
-          }
-        }
-
 }

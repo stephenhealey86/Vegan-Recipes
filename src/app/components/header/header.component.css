@@ -1,3 +1,4 @@
 a > .fa-globe-americas {
     animation: Spinner 2s linear;
+    animation-delay: 2s;
 }

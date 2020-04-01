@@ -22,11 +22,13 @@ import { Logger } from './models/Logger';
 import { DatePipe } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { GlobalErrorHandlerService } from './services/GlobalErrorHandler.service';
+import { VeganBrandDirective } from './directives/veganBrand.directive';
 
 const JQuery: object = window['$'];
 
 @NgModule({
   declarations: [
+    VeganBrandDirective,
     AppComponent,
     HeaderComponent,
     FooterComponent,
