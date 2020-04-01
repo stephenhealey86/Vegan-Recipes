@@ -31,10 +31,10 @@
   
   <!-- Main -->
   <div id="instrucitons-main" class="d-flex flex-column">
-    <div class="container">
-      <div class="row">
+    <div class="container-fluid">
+      <div class="row justify-content-center align-items-start">
         <!-- Summary -->
-        <div class="col m-5 p-3 bg-light rounded" id="summary">
+        <div class="col-sm-10 col-md-10 col-lg-10 col-xl-6 m-5 p-3 bg-light rounded" id="summary">
           <h3>{{recipeInstructions.title}}</h3>
           <img src="{{recipeInstructions.image}}" alt="{{recipeInstructions.title}}">
           <div class="d-flex">
@@ -46,7 +46,7 @@
         </div>
 
         <!-- Ingredients -->
-        <div class="col m-5 p-3 bg-light rounded" id="ingredients">
+        <div class="col-sm-10 col-md-10 co-lg-10 col-xl-3 m-5 p-3 bg-light rounded" id="ingredients">
           <h3>Ingredients</h3>
           <ul class="list-group list-group-flush">
             <app-ingredient *ngFor="let ingredient of recipeInstructions.extendedIngredients" [ingredient]="ingredient"></app-ingredient>
@@ -56,18 +56,16 @@
     </div>
 
     <!-- Instructions -->
-    <div class="container">
-      <div class="m-5 p-3 bg-light rounded">
-        <h3>Instructions</h3>
-        <app-spinner #instructionsSpinner [delay]="5000" [visible]="(recipeInstructions.analyzedInstructions?.length > 0)" [message]="'Instructions may not be available for this recipe.'">
-          <ng-container *ngIf="instructionsSpinner.visible">
-            <p class="m-2" [innerHTML]="recipeInstructions.instructions"></p>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" *ngFor="let step of recipeInstructions.analyzedInstructions[0].steps">{{step.number}}: {{step.step}}</li>
-            </ul>
-          </ng-container>
-        </app-spinner>
-      </div>
+    <div class="m-5 p-3 bg-light rounded">
+      <h3>Instructions</h3>
+      <app-spinner #instructionsSpinner [delay]="5000" [visible]="(recipeInstructions.analyzedInstructions?.length > 0)" [message]="'Instructions may not be available for this recipe.'">
+        <ng-container *ngIf="instructionsSpinner.visible">
+          <p class="m-2" [innerHTML]="recipeInstructions.instructions"></p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let step of recipeInstructions.analyzedInstructions[0].steps">{{step.number}}: {{step.step}}</li>
+          </ul>
+        </ng-container>
+      </app-spinner>
     </div>
   </div>
 </div>

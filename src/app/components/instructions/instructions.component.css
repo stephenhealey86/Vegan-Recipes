@@ -97,7 +97,7 @@ h6 {
 
 
 /* Responsiveness */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 570px) {
     * {
         --my-margin: 2vw;
     }
@@ -107,9 +107,6 @@ h6 {
 }
 
 @media screen and (min-width: 800px) {
-    #summary, #ingredients {
-        max-width: 40vw;
-    }
     * {
         --my-margin: 1vw;
         --my-sizeOuter: 2.5vw;
