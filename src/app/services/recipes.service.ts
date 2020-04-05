@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, EMPTY, of, BehaviorSubject, combineLatest, from, } from 'rxjs';
 import { SpoonacularRecipeSearch } from '../models/spoonacular-recipe-search';
 import { SpoonacularInformationResult } from '../models/spoonacular-information-result';
-import { tap, catchError, shareReplay, map, mergeMap, concatMap, toArray } from 'rxjs/operators';
+import { tap, catchError, shareReplay, map } from 'rxjs/operators';
 import { ILogger } from '../models/ILogger';
 
 
@@ -85,8 +85,8 @@ private combineFilterAndSearch(): Observable<SpoonacularRecipeSearch> {
   return combinedStream$;
 }
 
-private getNextRecipesObservable(num: number, offest: number): Observable<SpoonacularRecipeSearch> {
-  return this.http.get<SpoonacularRecipeSearch>(this.baseUrl + this.dietUrl + 'vegan&' + `offset=${offest}&` +
+private getNextRecipesObservable(num: number, offset: number): Observable<SpoonacularRecipeSearch> {
+  return this.http.get<SpoonacularRecipeSearch>(this.baseUrl + this.dietUrl + 'vegan&' + `offset=${offset}&` +
                                                 `number=${num}&` + this.token)
     .pipe(
       tap((res: SpoonacularRecipeSearch) => {
@@ -125,7 +125,7 @@ public getRecipeInstructions(id: string): Observable<SpoonacularInformationResul
   }
 }
 
-public getRecipeInstructionsFromLocalStorage(id: string): SpoonacularInformationResult {
+private getRecipeInstructionsFromLocalStorage(id: string): SpoonacularInformationResult {
   const LOCAL_STORAGE = this.LocalStorage;
   if (LOCAL_STORAGE) {
     return LOCAL_STORAGE[id] as SpoonacularInformationResult;
