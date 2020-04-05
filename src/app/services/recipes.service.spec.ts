@@ -28,7 +28,6 @@ describe('Service: Recipes', () => {
         HttpClientTestingModule
       ],
       providers: [
-        DatePipe,
         { provide: ILogger, useValue: loggerMock },
         RecipesService
       ]

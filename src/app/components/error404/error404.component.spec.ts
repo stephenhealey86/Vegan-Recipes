@@ -4,26 +4,24 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { Error404Component } from './error404.component';
-import { DatePipe } from '@angular/common';
 import { ILogger } from 'src/app/models/ILogger';
-import { Logger } from 'src/app/models/Logger';
 import { RecipesService } from 'src/app/services/recipes.service';
-import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('Error404Component', () => {
   let component: Error404Component;
   let fixture: ComponentFixture<Error404Component>;
+  let debug: DebugElement;
+  const loggerMock = jasmine.createSpyObj(['logError']);
+  const recipeServiceMock = jasmine.createSpyObj(['filterRecipeSearch']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ Error404Component ],
-      imports: [
-        HttpClientModule
-      ],
+      imports: [ RouterTestingModule ],
       providers: [
-        DatePipe,
-        { provide: ILogger, useClass: Logger },
-        RecipesService,
+        { provide: ILogger, useValue: loggerMock },
+        { provide: RecipesService, useValue: recipeServiceMock },
       ]
     })
     .compileComponents();
@@ -32,6 +30,7 @@ describe('Error404Component', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(Error404Component);
     component = fixture.componentInstance;
+    debug = fixture.debugElement;
     fixture.detectChanges();
   });
 
@@ -43,5 +42,28 @@ describe('Error404Component', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call filterRecipeSearch on Init', () => {
+    expect(recipeServiceMock.filterRecipeSearch).toHaveBeenCalledWith('');
+  });
+
+  it('should have h3 title Vegan Recipes', () => {
+    expect(debug.query(By.css('h3')).nativeElement.textContent).toEqual('Vegan Recipes');
+  });
+
+  it('should have p tag message', () => {
+    expect(debug.query(By.css('p')).nativeElement.textContent).toEqual('404 error. Something went wrong.');
+  });
+
+  describe('a tag', () => {
+    it('should have text Go To Recipes', () => {
+      expect(debug.query(By.css('a')).nativeElement.textContent).toEqual('Go To Recipes');
+    });
+
+    it('should link to /recipes', () => {
+      const href = debug.query(By.css('a')).nativeElement.getAttribute('href');
+      expect(href).toEqual('/recipes');
+    });
   });
 });
