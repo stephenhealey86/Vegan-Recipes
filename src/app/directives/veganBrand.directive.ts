@@ -1,4 +1,4 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appVeganBrand]'
@@ -7,15 +7,10 @@ export class VeganBrandDirective {
 
   direction = false;
 
-  constructor(private el: ElementRef) {
-    const LINK = el.nativeElement as HTMLLinkElement;
-    LINK.addEventListener('mouseenter', (e) => {
-      this.animate(e);
-    });
-   }
+  constructor() { }
 
 
-  public animate(event: MouseEvent): void {
+  @HostListener('mouseenter', ['$event']) animate(event: MouseEvent): void {
     try {
       const LINK = event.srcElement as HTMLLinkElement;
       const ICON = LINK.children[0] as HTMLElement;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipesService } from 'src/app/services/recipes.service';
-import { Router, RouterEvent } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
