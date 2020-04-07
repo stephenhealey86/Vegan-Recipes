@@ -1,6 +1,8 @@
 <article *ngIf="recipeData.image" class="card m-3">
   <a routerLink="/instructions/{{recipeData.id}}">
-    <img src="{{baseUri}}{{recipeData.image}}" alt="{{recipeData.image}}">
+    <div id="image-frame">
+      <img src="{{baseUri}}{{recipeData.image}}" alt="{{recipeData.image}}">
+    </div>
     <div class="card-body d-flex flex-column justify-content-between">
       <p class="card-text">{{recipeData.title}}.</p>
         <p class="card-text">Cooking time: {{recipeData.readyInMinutes}} mins.</p>
