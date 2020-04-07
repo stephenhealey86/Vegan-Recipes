@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SpoonacularRecipeResult } from 'src/app/models/spoonacular-recipe-result';
+import { SpoonacularRecipeResult } from '../../models/spoonacular-recipe-result';
 
 @Component({
   selector: 'app-recipe-card',

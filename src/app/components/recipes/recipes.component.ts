@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipesService } from 'src/app/services/recipes.service';
-import { SpoonacularRecipeSearch } from 'src/app/models/spoonacular-recipe-search';
+import { RecipesService } from '../../services/recipes.service';
+import { SpoonacularRecipeSearch } from '../../models/spoonacular-recipe-search';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipes',
