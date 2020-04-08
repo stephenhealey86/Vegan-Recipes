@@ -1,4 +1,4 @@
-<div *ngIf="recipeInstructions$ | async as recipeInstructions" class="d-flex flex-column flex-grow-1">
+<div *ngIf="recipeInstructions$ | async as recipeInstructions; else spinner" class="d-flex flex-column flex-grow-1">
 
   <!-- Icons -->
   <div id="instrucitons-icons" class="d-flex flex-row justify-content-between align-items-center">
@@ -36,7 +36,12 @@
         <!-- Summary -->
         <div class="col-sm-10 col-md-10 col-lg-10 col-xl-6 m-5 p-3 bg-light rounded" id="summary">
           <h3>{{recipeInstructions.title}}</h3>
-          <img src="{{recipeInstructions.image}}" alt="{{recipeInstructions.title}}">
+          <div>
+            <img [hidden]="hideImage" (load)="hideImage = false" src="{{recipeInstructions.image}}" alt="{{recipeInstructions.title}}">
+            <div *ngIf="hideImage" class="d-flex align-items-center justify-content-center w-100 h-100">
+              <i class="fas fa-spinner"></i>
+            </div>
+          </div>
           <div class="d-flex">
             <h6 class="mr-3" *ngIf="recipeInstructions.servings">Servings: {{recipeInstructions.servings}}</h6>
             <h6 class="mr-3" *ngIf="recipeInstructions.preparationMinutes">Prep Time: {{recipeInstructions.preparationMinutes}} mins</h6>
@@ -69,3 +74,8 @@
     </div>
   </div>
 </div>
+<ng-template #spinner>
+  <div class="d-flex align-items-center justify-content-center w-100 h-100">
+    <i class="fas fa-spinner"></i>
+  </div>
+</ng-template>

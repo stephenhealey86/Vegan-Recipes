@@ -10,6 +10,7 @@ export class SpinnerComponent implements OnInit {
   @Input() message: string;
   @Input() delay: number;
   @Input() visible: boolean;
+  @Input() color: string;
   public messageVisible = false;
 
   constructor() { }

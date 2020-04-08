@@ -14,9 +14,11 @@ export class InstructionsComponent implements OnInit {
     .pipe(
       switchMap((p: Params) => this.recipeService.getRecipeInstructions(p.params.id))
     );
+  hideImage = true;
 
   constructor(private recipeService: RecipesService, private route: ActivatedRoute) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }
