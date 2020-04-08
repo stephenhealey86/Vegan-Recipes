@@ -23,6 +23,7 @@ import { DatePipe } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { GlobalErrorHandlerService } from './services/GlobalErrorHandler.service';
 import { VeganBrandDirective } from './directives/veganBrand.directive';
+import { SwapImageOnHoverDirective } from './directives/swap-image-onHover.directive';
 
 const JQuery: object = window['$'];
 
@@ -38,7 +39,8 @@ const JQuery: object = window['$'];
     InstructionsComponent,
     IngredientComponent,
     Error404Component,
-    SpinnerComponent
+    SpinnerComponent,
+    SwapImageOnHoverDirective
   ],
   imports: [
     BrowserModule,

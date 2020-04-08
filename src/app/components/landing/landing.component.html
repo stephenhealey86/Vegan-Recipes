@@ -6,9 +6,12 @@
       <a class="btn btn-light" routerLink="/recipes">Go To Recipes</a>
     </div>
     <div style="overflow: hidden;" class="d-flex justify-content-start m-4 p-1 bg-light rounded">
-      <img src="../../../assets/Images/landing_one.jpg" id="img-one" class="img-fluid" alt="vegan dish">
-      <img src="../../../assets/Images/landing_two.jpg" id="img-two" class="img-fluid" alt="vegan dish">
-      <img src="../../../assets/Images/landing_three.jpg" id="img-three" class="img-fluid" alt="vegan dish">
+      <img src="../../../assets/Images/landing_one.jpg" id="img-one" alt="vegan dish"
+            class="img-fluid" [appSwapImageOnHover]="'../../../assets/Images/landing_hover.jpg'">
+      <img src="../../../assets/Images/landing_two.jpg" id="img-two" alt="vegan dish"
+            class="img-fluid" [appSwapImageOnHover]="'../../../assets/Images/landing_hover.jpg'">
+      <img src="../../../assets/Images/landing_three.jpg" id="img-three" alt="vegan dish" 
+            class="img-fluid" [appSwapImageOnHover]="'../../../assets/Images/landing_hover.jpg'">
     </div>
   </div>
 </div>
