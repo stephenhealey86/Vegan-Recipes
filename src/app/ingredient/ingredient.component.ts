@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ExtendedIngredient } from '../../models/spoonacular-information-result';
+import { ExtendedIngredient } from '../instructions/spoonacular-instructions-result';
 
 @Component({
   selector: 'app-ingredient',

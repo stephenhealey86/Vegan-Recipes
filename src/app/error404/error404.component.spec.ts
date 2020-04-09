@@ -4,8 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { Error404Component } from './error404.component';
-import { ILogger } from 'src/app/models/ILogger';
-import { RecipesService } from 'src/app/services/recipes.service';
+import { ILogger } from 'src/app/shared/ILogger.service';
+import { RecipesService } from 'src/app/recipes/recipes.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('Error404Component', () => {

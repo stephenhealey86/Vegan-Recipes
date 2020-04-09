@@ -1,7 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RecipesService } from '../../services/recipes.service';
-import { SpoonacularRecipeSearch } from 'src/app/models/spoonacular-recipe-search';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { RecipesService } from '../recipes/recipes.service';
 
 @Component({
   selector: 'app-landing',

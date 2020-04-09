@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { IngredientComponent } from './ingredient.component';
-import { ExtendedIngredient } from 'src/app/models/spoonacular-information-result';
+import { ExtendedIngredient } from 'src/app/instructions/spoonacular-instructions-result';
 
 describe('IngredientComponent', () => {
   let component: IngredientComponent;

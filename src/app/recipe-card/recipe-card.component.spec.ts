@@ -6,7 +6,7 @@ import { DebugElement } from '@angular/core';
 import { RecipeCardComponent } from './recipe-card.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SpoonacularRecipeResult } from 'src/app/models/spoonacular-recipe-result';
+import { SpoonacularRecipeResult } from 'src/app/recipes/spoonacular-recipe-result';
 
 describe('RecipeCardComponent', () => {
   let component: RecipeCardComponent;

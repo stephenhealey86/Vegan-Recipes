@@ -3,21 +3,25 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { LandingComponent } from './landing.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { RecipesService } from 'src/app/services/recipes.service';
+import { RecipesComponent } from './recipes.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ILogger } from 'src/app/models/ILogger';
-import { Logger } from 'src/app/models/Logger';
 import { DatePipe } from '@angular/common';
+import { ILogger } from 'src/app/shared/ILogger.service';
+import { Logger } from 'src/app/shared/Logger.service';
+import { RecipesService } from 'src/app/recipes/recipes.service';
+import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('LandingComponent', () => {
-  let component: LandingComponent;
-  let fixture: ComponentFixture<LandingComponent>;
+describe('RecipesComponent', () => {
+  let component: RecipesComponent;
+  let fixture: ComponentFixture<RecipesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingComponent ],
+      declarations: [
+        RecipesComponent,
+        RecipeCardComponent
+      ],
       imports: [
         RouterTestingModule,
         HttpClientModule
@@ -32,7 +36,7 @@ describe('LandingComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingComponent);
+    fixture = TestBed.createComponent(RecipesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

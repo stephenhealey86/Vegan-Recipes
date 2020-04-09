@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LandingComponent } from './components/landing/landing.component';
-import { RecipesComponent } from './components/recipes/recipes.component';
-import { InstructionsComponent } from './components/instructions/instructions.component';
-import { InstructionsGuardService } from './guards/instructions-guard.service';
-import { Error404Component } from './components/error404/error404.component';
+import { LandingComponent } from './landing/landing.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { InstructionsComponent } from './instructions/instructions.component';
+import { InstructionsGuardService } from './instructions/instructions-guard.service';
+import { Error404Component } from './error404/error404.component';
 
 
 const routes: Routes = [

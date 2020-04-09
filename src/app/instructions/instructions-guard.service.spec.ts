@@ -4,9 +4,9 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { InstructionsGuardService } from './instructions-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { ILogger } from '../models/ILogger';
-import { Logger } from '../models/Logger';
-import { RecipesService } from '../services/recipes.service';
+import { ILogger } from '../shared/ILogger.service';
+import { Logger } from '../shared/Logger.service';
+import { RecipesService } from '../recipes/recipes.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('Service: InstructionsGuard', () => {

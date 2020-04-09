@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipesService } from '../../services/recipes.service';
+import { RecipesService } from '../recipes/recipes.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-instructions',

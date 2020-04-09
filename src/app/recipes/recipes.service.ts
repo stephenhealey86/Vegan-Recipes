@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable, EMPTY, of, BehaviorSubject, combineLatest, from, } from 'rxjs';
-import { SpoonacularRecipeSearch } from '../models/spoonacular-recipe-search';
-import { SpoonacularInformationResult } from '../models/spoonacular-information-result';
+import { Observable, EMPTY, of, BehaviorSubject, combineLatest } from 'rxjs';
+import { SpoonacularRecipeSearch } from './spoonacular-recipe-search';
+import { SpoonacularInformationResult } from '../instructions/spoonacular-instructions-result';
 import { tap, catchError, shareReplay, map } from 'rxjs/operators';
-import { ILogger } from '../models/ILogger';
+import { ILogger } from '../shared/ILogger.service';
 
 
 @Injectable({
