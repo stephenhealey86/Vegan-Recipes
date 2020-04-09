@@ -7,10 +7,10 @@ import { InstructionsComponent } from './instructions.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DatePipe } from '@angular/common';
-import { ILogger } from 'src/app/core/ILogger.service';
-import { Logger } from 'src/app/core/Logger.service';
-import { RecipesService } from 'src/app/core/recipes.service';
-import { IngredientComponent } from '../ingredient/ingredient.component';
+import { ILogger } from 'src/app/core/services/ILogger.service';
+import { Logger } from 'src/app/core/services/Logger.service';
+import { RecipesService } from 'src/app/core/services/recipes.service';
+import { IngredientComponent } from './ingredient/ingredient.component';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { HttpClientModule } from '@angular/common/http';
 

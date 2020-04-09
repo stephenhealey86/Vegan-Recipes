@@ -5,7 +5,7 @@ import { InstructionsComponent } from '../instructions/instructions.component';
 import { InstructionsGuardService } from '../instructions/instructions-guard.service';
 
 const routes: Routes = [
-  { path: '', component: RecipesComponent },
+  { path: '', component: RecipesComponent, children: [] },
   { path: ':id', component: InstructionsComponent, canActivate: [InstructionsGuardService] },
 ];
 

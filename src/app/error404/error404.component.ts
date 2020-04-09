@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipesService } from '../core/recipes.service';
+import { RecipesService } from '../core/services/recipes.service';
 
 @Component({
   selector: 'app-error404',

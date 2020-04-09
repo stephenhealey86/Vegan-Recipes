@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SpoonacularRecipeResult } from '../recipes/spoonacular-recipe-result';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { SpoonacularRecipeResult } from '../spoonacular-recipe-result';
 
 @Component({
   selector: 'app-recipe-card',
   templateUrl: './recipe-card.component.html',
-  styleUrls: ['./recipe-card.component.css']
+  styleUrls: ['./recipe-card.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RecipeCardComponent implements OnInit {
 

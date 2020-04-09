@@ -6,10 +6,10 @@ import { DebugElement } from '@angular/core';
 import { RecipesComponent } from './recipes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { ILogger } from 'src/app/core/ILogger.service';
-import { Logger } from 'src/app/core/Logger.service';
-import { RecipesService } from 'src/app/core/recipes.service';
-import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
+import { ILogger } from 'src/app/core/services/ILogger.service';
+import { Logger } from 'src/app/core/services/Logger.service';
+import { RecipesService } from 'src/app/core/services/recipes.service';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RecipesComponent', () => {
