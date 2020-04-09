@@ -1,5 +1,5 @@
 <article *ngIf="recipeData.image" class="card m-3">
-  <a routerLink="/instructions/{{recipeData.id}}">
+  <a routerLink="/recipes/{{recipeData.id}}">
     <div id="image-frame">
       <img src="{{baseUri}}{{recipeData.image}}" alt="{{recipeData.image}}">
     </div>
