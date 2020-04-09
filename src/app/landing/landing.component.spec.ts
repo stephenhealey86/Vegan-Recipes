@@ -5,10 +5,10 @@ import { DebugElement } from '@angular/core';
 
 import { LandingComponent } from './landing.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RecipesService } from 'src/app/recipes/recipes.service';
+import { RecipesService } from 'src/app/core/recipes.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ILogger } from 'src/app/shared/ILogger.service';
-import { Logger } from 'src/app/shared/Logger.service';
+import { ILogger } from 'src/app/core/ILogger.service';
+import { Logger } from 'src/app/core/Logger.service';
 import { DatePipe } from '@angular/common';
 
 describe('LandingComponent', () => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipesService } from './recipes.service';
+import { RecipesService } from '../core/recipes.service';
 import { SpoonacularRecipeSearch } from './spoonacular-recipe-search';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';

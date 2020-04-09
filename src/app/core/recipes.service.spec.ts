@@ -4,10 +4,10 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { RecipesService } from './recipes.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { DatePipe } from '@angular/common';
-import { ILogger } from '../shared/ILogger.service';
+import { ILogger } from './ILogger.service';
 import { SpoonacularInformationResult } from '../instructions/spoonacular-instructions-result';
 import { environment } from 'src/environments/environment';
-import { SpoonacularRecipeSearch } from './spoonacular-recipe-search';
+import { SpoonacularRecipeSearch } from '../recipes/spoonacular-recipe-search';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 
 describe('Service: Recipes', () => {

@@ -7,7 +7,7 @@ import { HeaderComponent } from './header.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { RecipesService } from 'src/app/recipes/recipes.service';
+import { RecipesService } from 'src/app/core/recipes.service';
 import { Router } from '@angular/router';
 
 @Component({
