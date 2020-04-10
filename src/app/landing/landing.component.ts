@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipesService } from '../core/services/recipes.service';
 
 @Component({
   selector: 'app-landing',
@@ -8,13 +7,8 @@ import { RecipesService } from '../core/services/recipes.service';
 })
 export class LandingComponent implements OnInit {
 
-  private getDataEarly = this.recipeService.getVeganRecipes();
+  constructor() { }
 
-  constructor(private recipeService: RecipesService) { }
-
-  ngOnInit() {
-    this.getDataEarly.subscribe();
-    this.recipeService.filterRecipeSearch('');
-  }
+  ngOnInit() {}
 
 }

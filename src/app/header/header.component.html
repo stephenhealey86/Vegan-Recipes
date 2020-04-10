@@ -1,7 +1,7 @@
 <nav class="navbar vegan">
   <a class="vegan-brand" appVeganBrand (click)="clearSearchBar()" routerLink="/landing">Veg<i class="fas fa-globe-americas"></i>nRecipes</a>
   <form (ngSubmit)="submit()" class="form-inline my-2 my-lg-0">
-    <input name="search" [(ngModel)]="queryField" style="width: auto; margin-right: 0.5rem;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <input name="search" (input)="formChanged()" [(ngModel)]="queryField" style="width: auto; margin-right: 0.5rem;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
 </nav>

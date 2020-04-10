@@ -24,5 +24,12 @@ export class HeaderComponent implements OnInit {
 
   public clearSearchBar(): void {
     this.queryField = '';
+    this.recipeService.filterRecipeSearch('');
+  }
+
+  public formChanged(): void {
+    if (this.queryField === '') {
+      this.recipeService.filterRecipeSearch('');
+    }
   }
 }
