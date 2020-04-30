@@ -2,7 +2,7 @@
     color: var(--vegan-brand) !important;
     margin: 2rem;
     font-size: 5rem;
-    animation: spin 3s linear 0s infinite;
+    animation: Spinner 3s linear 0s infinite;
 }
 
 /* Animations */
